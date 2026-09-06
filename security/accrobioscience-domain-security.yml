@@ -1,0 +1,23 @@
+generated: '2026-09-06'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+note: >-
+  www.accropeutics.com negotiates TLSv1.3 but serves an INCOMPLETE certificate chain: the origin
+  presents only the leaf (CN=accropeutics.com, issued by Certum Domain Validation CA SHA2) and
+  omits the intermediate, so `openssl s_client` returns verify code 21, "unable to verify the first
+  certificate". Ordinary browsers recover via AIA fetching; strict clients — curl without -k,
+  Python urllib, and most server-side HTTP libraries — fail the handshake outright. The apex
+  publishes SPF but no DMARC record, no CAA records, and the accropeutics.com zone is not
+  DNSSEC-signed.
+hosts:
+- host: www.accropeutics.com
+  https: true
+  tls_cert_error: '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get
+    local issuer certificate (_ssl.c:1082)'
+  hsts: null
+domains:
+- domain: accropeutics.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false

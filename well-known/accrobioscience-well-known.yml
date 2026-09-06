@@ -1,0 +1,63 @@
+generated: '2026-09-06'
+method: probed
+source: >-
+  Live unauthenticated GET of the named /.well-known/ path list against every host Accro Bioscience
+  operates — the apex and www of accropeutics.com, its only host. There is no API baseURL, no
+  OpenAPI servers[] host and no docs/console host to probe, and api., dev., docs., developer.,
+  portal., data. and mcp..accropeutics.com do not resolve in DNS. Every path returned 404. Recorded
+  as an absence: no WellKnown and no SecurityTxt pointer is wired in apis.yml, because nothing here
+  is served.
+note: >-
+  The site runs on a Chinese website-builder stack (apex and www both CNAME to aikenuo.pvdomain.com
+  at 120.26.37.105, Aliyun) and answers every unmatched path — including /robots.txt and
+  /sitemap.xml — with an identical 548-byte HTML 404 shell. A control path,
+  /zz-api-evangelist-control-7c1e, returned the same 404 with the same byte count on both hosts,
+  confirming these are true hard 404s rather than a catch-all masking a served document. No 200 was
+  observed on any discovery document on either host.
+hosts:
+- host: www.accropeutics.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+- host: accropeutics.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
